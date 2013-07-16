@@ -184,36 +184,36 @@
                                         '               with the app key installed on your phone.</p>' +
                                         '           <form name="purchaseForm">' +
                                         '               <div class="control-group" ng-class="{error: purchaseForm.poster.$invalid}">' +
-                                        '                   <label>Your name:</label>' +
-                                        '                   <input type="text" name="poster" ng-model="form.name" required maxlength="100">' +
+                                        '                   <label for="pfName">Your name:</label>' +
+                                        '                   <input id="pfName" type="text" name="poster" ng-model="form.name" required maxlength="100">' +
                                         '                   <span ng-show="purchaseForm.poster.$error.required" class=help-inline>Required</span>' +
                                         '               </div>' +
 
                                         '               <div class="control-group" ng-class="{error: purchaseForm.email.$invalid}">' +
-                                        '                   <label>Email:</label>' +
-                                        '                   <input type="email" name="email" ng-model="form.email" maxlength="100">' +
+                                        '                   <label for="pfEmail">Email:</label>' +
+                                        '                   <input id="pfEmail" type="email" name="email" ng-model="form.email" maxlength="100">' +
                                         '                   <span ng-show="purchaseForm.email.$error.email" class=help-inline>Not valid email</span>' +
                                         '               </div>' +
 
                                         '               <div class="control-group" ng-class="{error: purchaseForm.how.$invalid}">' +
-                                        '                   <label>How did you hear about us?</label>' +
-                                        '                   <textarea name="how" ng-model="form.how" required maxlength="1000"></textarea>' +
+                                        '                   <label for="pfHow">How did you hear about us?</label>' +
+                                        '                   <textarea id="pfHow" name="how" ng-model="form.how" required maxlength="1000"></textarea>' +
                                         '                   <span ng-show="purchaseForm.how.$error.required" class="help-inline">Required</span>' +
                                         '               </div>' +
                                         '               <div class="control-group" ng-class="{error: purchaseForm.color.$invalid}">' +
-                                        '                   <label>Interior Color:</label>' +
+                                        '                   Interior Color:<br>' +
                                         '                   <input type="radio" ng-model="form.color" name="color" value="silver"/>Silver' +
                                         '                   <input type="radio" ng-model="form.color" name="color" value="metallic"/>Metallic Gray' +
                                         '               </div>' +
                                         '               <div class="control-group" ng-class="{error: purchaseForm.worth.$invalid}">' +
-                                        '                   <label>Net worth ($):</label>' +
-                                        '                   <input type="number" ng-model="form.worth" name="worth" min="30000" required/>' +
+                                        '                   <label for="pfWorth">Net worth ($):</label>' +
+                                        '                   <input id="pfWorth" type="number" ng-model="form.worth" name="worth" min="30000" required/>' +
                                         '                   <span ng-show="purchaseForm.worth.$error.min" class="help-inline">Your net worth is not high enough, sorry!</span>' +
                                         '                   <span ng-show="purchaseForm.worth.$error.required" class="help-inline">Required</span>' +
                                         '               </div>' +
                                         '               <div class="control-group" ng-class="{error: purchaseForm.country.$invalid}">' +
-                                        '                   <label>Country:</label>' +
-                                        '                   <select countries ng-model="form.country" ng-options="c for c in countries" name="country" required>' +
+                                        '                   <label for="pfCountry">Country:</label>' +
+                                        '                   <select id="pfCountry" countries ng-model="form.country" ng-options="c for c in countries" name="country" required>' +
                                         '                   </select>' +
                                         '                   <span ng-show="purchaseForm.country.$error.required" class="help-inline">Required</span>' +
                                         '               </div>' +
