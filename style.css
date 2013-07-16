@@ -1,0 +1,191 @@
+html {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+body {
+    background: url(img/warps/timeportaltwo.jpg) no-repeat center center fixed !important ;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+    background-size: cover !important;
+}
+
+#navLogo {
+    max-height: 30px;
+    float: left;
+    margin-top: 5px;
+}
+#view{
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform: perspective(1200px);
+}
+#view > div{
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+
+}
+#view > div > div{
+    margin-top: -2px;
+    padding: 10px;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+    background-size: cover !important;
+}
+
+.hero-unit,.main-content {
+    background-color:rgba(255,255,255,.6);
+}
+.main-content, .textCover, .muted {
+    color: black !important;
+}
+.main-content {
+
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+.row {
+    margin-left: 0px !important;
+}
+.row img {
+    padding-bottom: 1px;
+}
+.img-right {
+    float: right;
+}
+.img-right img {
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+
+@media handheld, screen and (max-width: 768px){
+    #sideNav {
+        display: none;
+    }
+}
+@media (min-width: 768px){
+    #sideNav {
+        position: fixed;
+    }
+}
+@media (min-width: 1200px){
+    .span55{
+        width: 540px;
+    }
+}
+
+
+.faq, .padded {
+    padding: 6px;
+}
+
+
+.control-group input[type="number"], .control-group input[type="text"]{
+    margin: 0;
+    padding: 0;
+}
+.control-group input[type="radio"]{
+    margin: -2px 4px 0 0;
+    padding: 0;
+}
+
+.control-group select{
+    padding: 0;
+    width: 206px;
+    height: 20px;
+    margin: 0;
+}
+#signature input[type=checkbox] {
+    margin-top: 0;
+}
+#signature input[type=text] {
+    margin-bottom: 0;
+}
+#signature span span{
+    color: #b94a48;
+}
+
+
+@-webkit-keyframes rotateFromRight{
+    0%{
+
+        -webkit-transform: rotateY(540deg);
+    }
+    10%{
+        -webkit-transform: rotateY(540deg);
+    }
+    75%{
+        -webkit-transform: rotateY(0deg);
+    }
+    100%{
+        -webkit-transform: rotateY(0deg);
+    }
+}
+@-webkit-keyframes rotateToLeft {
+    0%{
+        -webkit-transform: rotateY(0deg);
+    }
+    10%{
+        -webkit-transform: rotateY(0deg);
+    }
+    75%{
+        -webkit-transform: rotateY(-540deg);
+    }
+    100%{
+        -webkit-transform: rotateY(-540deg);
+    }
+}
+
+
+@-webkit-keyframes expand{
+    0%{
+        -webkit-transform: scale(1);
+    }
+    25%{
+        -webkit-transform: scale(.5);
+    }
+    25%{
+        -webkit-transform: scale(.5);
+    }
+    100%{
+        -webkit-transform: scale(1);
+    }
+}
+
+
+
+.view-enter, .view-leave, .view-enter > div, .view-leave > div {
+    -webkit-backface-visibility: hidden;
+}
+
+.view-enter {
+
+    -webkit-transform-style: preserve-3d;
+    -webkit-animation-name: rotateFromRight;
+    -webkit-animation-duration: 1.5s;
+}
+.view-enter > div {
+    -webkit-transform-style: preserve-3d;
+    -webkit-animation-name: expand;
+    -webkit-animation-duration: 1.5s;
+}
+.view-enter.view-enter-active {}
+.view-enter.view-enter-active > div {}
+
+
+.view-leave {
+    -webkit-transform-style: preserve-3d;
+    -webkit-animation-name: rotateToLeft;
+    -webkit-animation-duration: 1.5s;
+}
+.view-leave > div {
+    -webkit-transform-style: preserve-3d;
+    -webkit-animation-name: expand;
+    -webkit-animation-duration: 1.5s;
+}
+.view-leave.view-leave-active{
+}

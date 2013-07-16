@@ -1,0 +1,295 @@
+<html>
+    <head>
+
+        <link rel="icon" type="image/png" href="http://i.imgur.com/wAPNHeH.png"/>
+
+        <link href="libraries/bootstrap-combined.min.css" rel="stylesheet">
+        <script src="libraries/jquery-1.9.1.min.js"></script>
+        <script src="libraries/angular.min.unstable.js"></script>
+        <script src="libraries/angular-resource.min.js"></script>
+        <script src="libraries/bootstrap.min.js"></script>
+
+
+        <script src="modules.js"></script>
+        <script src="main.js"></script>
+        <link rel="stylesheet" href="style.css">
+
+
+        <script>
+            angular.module("QAPage", ['html6', 'chatbackend']).
+                    directive('randomBackground', function($location){
+                        return {
+                            priority: 100000,
+                            scope: true,
+                            link: function (scope, elm, attrs){
+                                var images = [
+                                    "background.jpg"
+                                    ,"Ancient-Peaks.jpg"
+                                    ,"beach.jpg"
+                                    ,"fastapproach.jpg"
+                                    ,"floatingcity.jpg"
+                                    ,"future_house.jpg"
+                                    ,"gardenpath.jpg"
+                                    ,"icePort.jpg"
+                                    ,"oceancity.jpg"
+                                    ,"redpath.jpg"
+                                    ,"winter.jpg"
+                                ];
+
+                                var imageIndex= !scope.lastIndex && $location.$$path == "/" ? 0 : Math.floor(Math.random() * images.length);
+                                scope.$parent.lastIndex = imageIndex;
+
+                                var root = "img/backgrounds/";
+                                var url = root + images[imageIndex];
+                                scope.imgUrl = url;
+                            }
+                        }
+                    }).
+                    directive('viewWrapper', function(){
+                        return {
+                            restrict: 'E',
+                            transclude: true,
+                            replace: true,
+                            template: '<div ng-style="zOrigin"><div random-background ng-style="{minHeight: minHeight + \'px\', ' +
+                                                                              'background: \'url( {{ imgUrl }} ) no-repeat center center\' }">' +
+                                            '<div class="container" ng-transclude></div></div></div>'
+                        }
+                    }).
+                    config(function($routeProvider) {
+                        $routeProvider.
+                                when('/', {template:
+                                        '<view-wrapper>' +
+                                        '<div class=hero-unit>' +
+                                        '   <div class=row>' +
+                                        '       <div class="span5 offset2">' +
+                                        '           <h1 class="textCover">Space Time Vertex</h1>' +
+                                        '           <h2 class=muted>Getting you where you need to go, any where, any time.</h2>' +
+                                        '       </div>' +
+                                        '       <div class=span3>' +
+                                        '           <img src="img/logo.png">' +
+                                        '       </div>' +
+                                        '   </div>' +
+                                        '</div>' +
+                                        '<div class="row main-content">' +
+                                        '   <div class="span3">' +
+                                        '       <img class="img-circle" src="img/warp.jpg">' +
+                                        '   </div>' +
+                                        '   <div class="span8">' +
+                                        '       <h2 class=page-header>Go Anywhere Possible</h2>' +
+                                        '       <p>The Space Time Vertex uses patented space-time manipulation technologies that allow' +
+                                        '           you to go wherever you could possibly want to go. Hawaii, Rome in 15 B.C.E, or' +
+                                        '           another planet in the distant future; everything you could possibly imagine becomes possible.</p>' +
+                                        '   </div>' +
+                                        '</div>' +
+                                        '<div class="row main-content">' +
+                                        '   <div class="span8">' +
+                                        '       <h2 class=page-header>Access Anywhere</h2>' +
+                                        '       <p>' +
+                                        '           Use the App Key to use the teleporter from anywhere. The far reaches of the universe will never' +
+                                        '           be beyond your your finger tips. Create favorited locations so that you can effortlessly jump to anywhere' +
+                                        '           you want.' +
+                                        '       </p>' +
+                                        '   </div>' +
+                                        '   <div class="img-right span3">' +
+                                        '       <img class="img-square" src="img/teleporting.jpg">' +
+                                        '   </div>' +
+                                        '</div>' +
+                                        '</view-wrapper>'
+
+
+                                }).
+                                when('/description', {template:
+                                        '<view-wrapper>' +
+                                        '<div class="row">' +
+                                        '   <div id="sideNav" class="span2 main-content padded">' +
+                                        '       <h4 class="page-header">Features</h4>' +
+                                        '       <ul>' +
+                                        '           <li>App Key</li>' +
+                                        '           <li>Private Instance</li>' +
+                                        '           <li>Timeline Management</li>' +
+                                        '           <li>Control Panels</li>' +
+                                        '       </ul>' +
+                                        '   </div>' +
+                                        '   <div class="offset2 span9 main-content padded">' +
+                                        '       <div class="row">' +
+                                        '           <div class="span3">' +
+                                        '               <h2 class="page-header">App Key</h2>' +
+                                        '               <p>The device can be accessed from any location with the App Key. When you open the app, ' +
+                                        '               you will be shown a view of the space near you. Press on the people you want to select, and' +
+                                        '               then press the go button to teleport them into the vertex. You can change your view with the arrow keys.' +
+                                        '               </p>' +
+                                        '           </div>' +
+                                        '           <div class="span5 span55">' +
+                                        '               <img src="img/androidscreen.png">' +
+                                        '           </div>' +
+                                        '       </div>' +
+                                        '       <div class="row">' +
+                                        '           <div class="span8">' +
+                                        '               <h2 class="page-header">Private Interior</h2>' +
+                                        '               <p>Once pulled into the vertex, you will be in a private instance outside the normal' +
+                                        '                   space-time continuum. This "room" contains seats for you and your friends, and a main' +
+                                        '                   control panel located in the center of the circular room. Feel free to rest here for any' +
+                                        '                   length of time; time ceases to exist, so you can spend as much time as you like. For additional cost,' +
+                                        '                   you can add features to this room to make it more comfortable.</p>' +
+                                        '           </div>' +
+                                        '       </div>' +
+                                        '       <div class="row">' +
+                                        '           <div class="span8">' +
+                                        '               <h2 class="page-header">Multiple Instances</h2>' +
+                                        '               <p>The device not only takes advantage of time warp technology, but also dimensional bending patents' +
+                                        '                  that allow you to create and manage separate timelines. Using this, you can sandbox realities' +
+                                        '                  and move between them for more flexability and safety.</p>' +
+                                        '           </div>' +
+                                        '       </div>' +
+                                        '       <div class="row">' +
+                                        '           <div class="span8">' +
+                                        '               <h2 class="page-header">Control Panels</h2>' +
+                                        '               <p>The control panels feature all the necessary inputs to select any location in the universe.' +
+                                        '               Scroll through the time at a single location, or fly around at a specific point in time. Above the' +
+                                        '               controls are large screens that show you where you would port out to when selected. This view can either' +
+                                        '               be fixed in time, or scale along with the perceived time in the room. Before porting out to a location,' +
+                                        '               the device will check to make sure it is a safe decision, and warn you about any problems.</p>' +
+                                        '               <p>For ease of use, you can also search using logical location queries. Type in or say "Paris, France, 1944",' +
+                                        '               and the device will bring you to the closest Paris it can find. You can do more specific searches like "Glaxicron Zeta,' +
+                                        '               Prolek, Artrico Four, Chrylon System, Andromeda Galaxy, Universal Standard Time 120391823091123" for more precision. For ' +
+                                        '               convenience, all searches can be saved, and in the case of any ambiguity, there will is a list of possible locations shown.</p>' +
+                                        '           </div>' +
+                                        '       </div>' +
+                                        '   </div>' +
+                                        '</div>' +
+                                        '</view-wrapper>'
+                                }).
+                                when('/faq', {template:
+                                        '<view-wrapper>' +
+                                        '   <div class="row main-content faq">' +
+                                        '       <h2 class=page-header>Frequently Asked Questions</h2>' +
+                                        '       <ul>' +
+                                        '           <li><h4>How do I favorite a location?</h4><p>Press the favorite button on the App Key, located in the main view screen.</p></li>' +
+                                        '           <li><h4>Can this device alter the timeline?</h4><p>Yes. There is a sandboxed universe mode which allows you to isolate any changes made' +
+                                        '               to the timeline to that reality.</p></li>' +
+                                        '       </ul>' +
+                                        '       <chat></chat>' +
+                                        '   </div>' +
+                                        '</view-wrapper>'}).
+                                when('/buy', {template:
+                                        '<view-wrapper>' +
+                                        '   <div class="row main-content">' +
+                                        '       <div class="span9">' +
+                                        '           <h2 class=page-header>Buy Instance</h2>' +
+                                        '           <p>The Space-Time Vertex is a very powerful tool. Because of this, we use an unconventional sales model.' +
+                                        '               Since it will allow you unprecedented influence over certain strains of reality, we require you to ' +
+                                        '               forfeit all of your assets from this strain to purchase one. After submitting your request, we ' +
+                                        '               will immediately arrive and your home or place of purchase, evaluate your worth, and take your assets' +
+                                        '               if you qualify. You will then be moved to an alternate strain of reality with no access to your previous one,' +
+                                        '               with the app key installed on your phone.</p>' +
+                                        '           <form name="purchaseForm">' +
+                                        '               <div class="control-group" ng-class="{error: purchaseForm.poster.$invalid}">' +
+                                        '                   <label>Your name:</label>' +
+                                        '                   <input type="text" name="poster" ng-model="form.name" required maxlength="100">' +
+                                        '                   <span ng-show="purchaseForm.poster.$error.required" class=help-inline>Required</span>' +
+                                        '               </div>' +
+
+                                        '               <div class="control-group" ng-class="{error: purchaseForm.email.$invalid}">' +
+                                        '                   <label>Email:</label>' +
+                                        '                   <input type="email" name="email" ng-model="form.email" maxlength="100">' +
+                                        '                   <span ng-show="purchaseForm.email.$error.email" class=help-inline>Not valid email</span>' +
+                                        '               </div>' +
+
+                                        '               <div class="control-group" ng-class="{error: purchaseForm.how.$invalid}">' +
+                                        '                   <label>How did you hear about us?</label>' +
+                                        '                   <textarea name="how" ng-model="form.how" required maxlength="1000"></textarea>' +
+                                        '                   <span ng-show="purchaseForm.how.$error.required" class="help-inline">Required</span>' +
+                                        '               </div>' +
+                                        '               <div class="control-group" ng-class="{error: purchaseForm.color.$invalid}">' +
+                                        '                   <label>Interior Color:</label>' +
+                                        '                   <input type="radio" ng-model="form.color" name="color" value="silver"/>Silver' +
+                                        '                   <input type="radio" ng-model="form.color" name="color" value="metallic"/>Metallic Gray' +
+                                        '               </div>' +
+                                        '               <div class="control-group" ng-class="{error: purchaseForm.worth.$invalid}">' +
+                                        '                   <label>Net worth ($):</label>' +
+                                        '                   <input type="number" ng-model="form.worth" name="worth" min="30000" required/>' +
+                                        '                   <span ng-show="purchaseForm.worth.$error.min" class="help-inline">Your net worth is not high enough, sorry!</span>' +
+                                        '                   <span ng-show="purchaseForm.worth.$error.required" class="help-inline">Required</span>' +
+                                        '               </div>' +
+                                        '               <div class="control-group" ng-class="{error: purchaseForm.country.$invalid}">' +
+                                        '                   <label>Country:</label>' +
+                                        '                   <select countries ng-model="form.country" ng-options="c for c in countries" name="country" required>' +
+                                        '                   </select>' +
+                                        '                   <span ng-show="purchaseForm.country.$error.required" class="help-inline">Required</span>' +
+                                        '               </div>' +
+
+                                        '               <div id="signature" class="control-group" ng-class="{error: purchaseForm.sign.$invalid}">' +
+                                        '                   <label>' +
+                                        '                       <input type="checkbox" ng-model="form.agree" name="agree" required />' +
+                                        '                       I agree:' +
+                                        '                   </label>' +
+                                        '                   <input ng-show="form.agree" type="text" ng-model="form.agreeSign" name="sign" required maxlength="100"/>' +
+                                        '                   <span ng-show="purchaseForm.sign.$error.required" class="help-inline">Please Sign</span>' +
+                                        '               </div>' +
+                                        '               <button ng-click="submit()" ng-disabled="purchaseForm.$invalid" class="btn">Submit</button>' +
+
+                                        '           </form>' +
+                                        '       </div>' +
+                                        '   </div>' +
+                                        '</view-wrapper>',
+                                    controller: function FormCtrl($scope){
+                                        $scope.form = {color:"silver"};
+                                    }
+                                }).
+                                when('/fsd', {template:
+                                    "<view-wrapper>" +
+                                    '   <div class="row">' +
+                                            '<iframe src="STVFSD.pdf" ng-style="{width: \'100%\', height: (minHeight * .99) + \'px\', borderRadius: \'6px\'}"></iframe>' +
+                                    '   </div>' +
+                                    "</view-wrapper>"
+                                }).
+                                otherwise({redirectTo:'/'});
+                    });
+
+        </script>
+        <script>
+            function AppCtrl($scope, $window) {
+                $scope.scrollTo = function(id){
+                    var element = document.getElementById(id);
+                    element.scrollIntoView();
+                }
+
+                function zOrigin (origin) {
+                    this['-webkit-transform-origin'] = 'center center -' + origin + 'px';
+                    this['transform-origin'] = 'center center -' + origin + 'px';
+                }
+
+                $scope.screenSize = $window.innerWidth;
+                $scope.zOrigin = new zOrigin($scope.screenSize / 2);
+
+                var spacing = 59;
+
+                $scope.minHeight = $window.innerHeight - spacing;
+
+                $window.onresize = function (e) {
+                    function setSizes(){
+                        $scope.screenSize = $window.innerWidth;
+                        $scope.zOrigin = new zOrigin($scope.screenSize / 2);
+                        $scope.minHeight = $window.innerHeight - spacing;
+                    }
+                    $scope.$apply(setSizes);
+                }
+            }
+        </script>
+
+        <title>
+            Space-Time Vertex
+        </title>
+    </head>
+    <body ng-app="QAPage" ng-controller="AppCtrl">
+        <navbar brand="Space Time Vertex" logo="img/logo.png">
+            <li><a href="#/">Home</a></li>
+            <li><a href="#/description">Product Description</a></li>
+            <li><a href="#/faq">FAQ</a></li>
+            <li><a href="#/buy">Buy</a></li>
+            <li><a href="#/fsd">FSD</a></li>
+        </navbar>
+        <div ng-view id="view" ng-animate="{enter: 'view-enter', leave: 'view-leave'}"></div>
+    </body>
+<script src="libraries/crypto.js"></script>
+</html>
